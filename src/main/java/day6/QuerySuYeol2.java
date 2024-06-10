@@ -2,22 +2,22 @@ package day6;
 
 public class QuerySuYeol2 {
     public static int[] solution(int[] arr, int[][] queries) {
-        int answer[] = {};
-        for(int i = 0; i < queries.length; i++){
-            int min = Integer.MAX_VALUE;
-            for(int j = 0; j<arr.length; j++){
-                if(arr[j]>=queries[i][0] && arr[j]<=queries[i][1] && arr[j]>queries[i][2]){
-                    if(arr[j]<min){
-                        min = arr[j];
-                    }
-                    answer[i] = arr[j];
-                }else{
-                    answer[i] = -1;
-                    break;
-                }
-            }
+        int answer[] =new int[queries.length];
+        for(int i = 0; i<queries.length; i++){
+           int min = Integer.MAX_VALUE;
+           for(int j =queries[i][0]; j<=queries[i][1]; j++){
+               if(arr[j]>queries[i][2]){
+                   if(arr[j]<min){
+                       min = arr[j];
+                   }
+               }
+           }
+           if(min==Integer.MAX_VALUE){
+               min = -1;
+           }
+            answer[i] = min;
         }
-        return answer;
+       return answer;
     }
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class QuerySuYeol2 {
         int [] arr = {0, 1, 2, 4, 3};
         int answer[] = solution(arr,queries);
         for(int i : answer){
-            System.out.println(i);
+            System.out.print(i + " ");
         }
     }
 }
